@@ -49,3 +49,14 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         }
     });
 });
+
+
+document.getElementById("darkModeButton").addEventListener('click',function() {
+    if(document.getElementById("darkModeButton").textContent == "Light Mode"){
+        document.getElementById("body").classList.remove("dm");
+        document.getElementById("darkModeButton").textContent = "Dark Mode";}
+    else{
+        document.getElementById("body").classList.add("dm");
+        document.getElementById("darkModeButton").textContent = "Light Mode";
+    }
+});
