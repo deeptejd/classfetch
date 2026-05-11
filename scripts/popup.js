@@ -4,6 +4,17 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         document.body.textContent = 'This extension only works on Google Classroom. (For now)';
         return;
     }
+
+    // Extract the authuser parameter from the Classroom URL (defaults to 0 if not found)
+    const authuserMatch = currentTab.url.match(/\/u\/(\d+)\//);
+    const authuser = authuserMatch ? authuserMatch[1] : '0';
+
+    // Helper function to safely append authuser to the download link
+    const appendAuthUser = (url) => {
+        const separator = url.includes('?') ? '&' : '?';
+        return `${url}${separator}authuser=${authuser}`;
+    };
+
     chrome.tabs.sendMessage(tabs[0].id, { action: "getDriveLinks" }, function (response) {
         if (response && response.files.length > 0) {
             const fileList = document.getElementById('fileList');
@@ -33,14 +44,20 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 Array.from(fileList.children).forEach(li => {
                     const checkbox = li.querySelector('input[type="checkbox"]');
                     if (checkbox.checked) {
-                        chrome.downloads.download({ url: checkbox.value, filename: li.textContent });
+                        // Removing the 'filename' parameter lets the browser use Google Drive's native filename with the extension
+                        chrome.downloads.download({ 
+                            url: appendAuthUser(checkbox.value)
+                        });
                     }
                 });
             });
 
             document.getElementById('downloadAll').addEventListener('click', function () {
                 response.files.forEach(file => {
-                    chrome.downloads.download({ url: file.link, filename: file.name });
+                    // Removing the 'filename' parameter lets the browser use Google Drive's native filename with the extension
+                    chrome.downloads.download({ 
+                        url: appendAuthUser(file.link)
+                    });
                 });
             });
 
