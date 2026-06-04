@@ -33,14 +33,23 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 fileList.appendChild(li);
 
                 li.addEventListener('click', function (event) {
-                    // Prevent the default action if the click is directly on the checkbox
                     if (event.target !== checkbox) {
                         checkbox.checked = !checkbox.checked;
                     }
+                    // select-all
+                    const allChecked = Array.from(fileList.querySelectorAll('input[type="checkbox"]')).every(cb => cb.checked);
+                    document.getElementById('selectAll').checked = allChecked;
                 });
             });
 
-            // buttons
+            // select-all
+            document.getElementById('selectAll').addEventListener('change', function () {
+                Array.from(fileList.querySelectorAll('input[type="checkbox"]')).forEach(cb => {
+                    cb.checked = this.checked;
+                });
+            });
+
+            // select-all-buttons
             document.getElementById('downloadSelected').addEventListener('click', function () {
                 Array.from(fileList.children).forEach(li => {
                     const checkbox = li.querySelector('input[type="checkbox"]');
