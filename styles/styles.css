@@ -1,9 +1,24 @@
+:root{
+    --base-color:linear-gradient(180deg, #f9fafb 0%, #f3f4f6 100%);
+    --text-color:#1f2937;
+    --border-color:#e5e7eb;
+    --title-color:#065f46;
+    --filelist-color:#ffffff;
+}
+.dm{
+    --base-color: #1f2937;
+    --text-color: #f9fafb;
+    --border-color: #374151;
+    --title-color: #10b981;
+    --filelist-color: #1e293b;
+}
+
 body {
     font-family: "Segoe UI", sans-serif;
-    background-color: #f9f9f9;
+    background-color: var(--base-color);
     margin: 0;
     padding: 16px;
-    color: #222;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     min-width: 320px;
@@ -17,7 +32,7 @@ body {
     align-items: center;
     flex-wrap: wrap;
     padding-bottom: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .header-right {
@@ -68,7 +83,7 @@ body {
     margin-bottom: 16px;
     max-height: 200px;
     overflow-y: auto;
-    border: 1px solid #ddd;
+    border: 1px solid var(--filelist-color);
     border-radius: 4px;
 }
 
