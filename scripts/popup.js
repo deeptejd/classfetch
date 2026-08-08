@@ -12,6 +12,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
                 checkbox.value = file.link;
+                checkbox.dataset.filename = file.name; // Store filename with extension
 
                 const text = document.createElement('span');
                 text.textContent = file.name;
@@ -33,14 +34,37 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                 Array.from(fileList.children).forEach(li => {
                     const checkbox = li.querySelector('input[type="checkbox"]');
                     if (checkbox.checked) {
-                        chrome.downloads.download({ url: checkbox.value, filename: li.textContent });
+                        const filename = checkbox.dataset.filename;
+                        console.log('Downloading:', filename, 'from:', checkbox.value);
+                        chrome.downloads.download({ 
+                            url: checkbox.value, 
+                            filename: filename,
+                            saveAs: false
+                        }, function(downloadId) {
+                            if (chrome.runtime.lastError) {
+                                console.error('Download error:', chrome.runtime.lastError);
+                            } else {
+                                console.log('Download started:', downloadId);
+                            }
+                        });
                     }
                 });
             });
 
             document.getElementById('downloadAll').addEventListener('click', function () {
                 response.files.forEach(file => {
-                    chrome.downloads.download({ url: file.link, filename: file.name });
+                    console.log('Downloading:', file.name, 'from:', file.link);
+                    chrome.downloads.download({ 
+                        url: file.link, 
+                        filename: file.name,
+                        saveAs: false
+                    }, function(downloadId) {
+                        if (chrome.runtime.lastError) {
+                            console.error('Download error:', chrome.runtime.lastError);
+                        } else {
+                            console.log('Download started:', downloadId);
+                        }
+                    });
                 });
             });
 
