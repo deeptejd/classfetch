@@ -1,0 +1,34 @@
+name: new release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'version number'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  zip-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP
+        run: |
+          mkdir classfetch
+          cp -r icons scripts styles views manifest.json classfetch/
+          zip -r classfetch-v${{ inputs.version }}.zip classfetch
+
+      - name: Push as a github release
+        uses: ncipollo/release-action@v1
+        with:
+          name: "ClassFetch v${{ inputs.version }}"
+          artifacts: classfetch-v${{ inputs.version }}.zip
+          tag: v${{ inputs.version }}
+          
