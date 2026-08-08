@@ -19,11 +19,7 @@ Link any related issue(s):
 Summarize the technical changes made and their purpose.
 
 ## Testing
-Describe how the changes were tested and verified.
-
-> Example:  
-> - Run `npm run dev` and verify new section loads correctly.  
-> - Tested responsive layout on desktop and mobile.
+Describe how you tested and verified your changes work as intended. If there's a specific flow to follow, include steps the maintainer can use to reproduce your testing.
 
 ## Checklist
 Please ensure the following before submitting:
