@@ -100,11 +100,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 // Clean the filename
                 fileName = cleanFileName(fileName);
                 
-                // If we still don't have a filename with extension, use file ID as fallback
+                // If we still don't have a filename with extension, fall back to an ID-based name.
+                // Note: in this case we do NOT know the real file type, so we intentionally avoid
+                // adding a fake extension. The resulting file will have no extension and will look
+                // like "download_<fileId>".
                 if (!fileName || !fileName.includes('.')) {
                     const fileIdMatch = a.href.match(/\/file\/d\/(.*?)\//);
                     if (fileIdMatch) {
-                        fileName = `download_${fileIdMatch[1]}.file`;
+                        fileName = `download_${fileIdMatch[1]}`;
                     }
                 }
                 
