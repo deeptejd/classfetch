@@ -1,12 +1,8 @@
 name: new release
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'version number'
-        required: true
-        type: string
+  push:
+    tags: ['v*']
 
 permissions:
   contents: write
@@ -19,16 +15,27 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Validate manifest.json
+        run: jq empty manifest.json
+
+      - name: Verify tag matches manifest version
+        run: |
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          MANIFEST_VERSION=$(jq -r .version manifest.json)
+          if [ "$TAG_VERSION" != "$MANIFEST_VERSION" ]; then
+            echo "Tag '$GITHUB_REF_NAME' does not match manifest.json version '$MANIFEST_VERSION'."
+            exit 1
+          fi
+
       - name: Create ZIP
         run: |
           mkdir classfetch
           cp -r icons scripts styles views manifest.json classfetch/
-          zip -r classfetch-v${{ inputs.version }}.zip classfetch
+          zip -r classfetch-${GITHUB_REF_NAME}.zip classfetch
 
       - name: Push as a github release
         uses: ncipollo/release-action@v1
         with:
-          name: "ClassFetch v${{ inputs.version }}"
-          artifacts: classfetch-v${{ inputs.version }}.zip
-          tag: v${{ inputs.version }}
-          
+          name: "ClassFetch ${GITHUB_REF_NAME}"
+          artifacts: classfetch-${{ github.ref_name }}.zip
+          tag: ${{ github.ref_name }}

@@ -31,6 +31,12 @@
 4. Alternatively, select the 'Download All' button to download all the files that are currently being listed
 > Scroll down for FAQs (Common issue: Downloading ```.htm``` files)
 
+## Releasing (maintainers)
+
+1. Bump `version` in `manifest.json` (SemVer) and add a `CHANGELOG.md` entry. Commit both.
+2. `git tag vX.Y.Z && git push origin main --tags`
+3. Pushing the tag builds the zip and creates the GitHub release automatically. If it fails with "version does not match", fix the manifest and re-tag.
+
 ## Contributing
 
 Pull requests are welcome, there's so much that could be added to make this extension better for everyone! For major changes, please open an issue first to discuss what you would like to change.

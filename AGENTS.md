@@ -19,6 +19,7 @@ ClassFetch is a Manifest V3 browser extension (Chrome/Edge/Firefox). No build st
 
 ## Release
 
-- Bump `version` in `manifest.json` manually.
-- `.github/workflows/new-release.yml` (manual `workflow_dispatch`) zips exactly: `icons scripts styles views manifest.json`. **Any new file/directory needed at runtime must be added to the `cp -r` line** or releases will be missing it.
-- Release tag/name come from the workflow's `version` input, which is not auto-checked against `manifest.json`.
+- `manifest.json` is the single source of truth for the version; use SemVer (`MAJOR.MINOR.PATCH`). Bump it and add a `CHANGELOG.md` entry in the same commit.
+- To release: `git commit` the version bump, then `git tag vX.Y.Z && git push origin main --tags`. Pushing a `v*` tag runs `.github/workflows/new-release.yml`, which validates the manifest, **fails if the tag doesn't match `manifest.json`'s version**, zips `icons scripts styles views manifest.json`, and creates the GitHub release.
+- Any new runtime file/directory must be added to the `cp -r` line in the workflow or releases will miss it.
+- History may contain tags (v1.0, v1.1, v1.4.1) that skipped versions — that's legacy; keep the tag/manifest pair consistent from v1.6.0 onward.
