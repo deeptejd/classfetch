@@ -1,7 +1,11 @@
+function getFileId(driveLink) {
+    const fileIdMatch = driveLink.match(/\/file\/d\/([^/?#]+)/);
+    return fileIdMatch ? fileIdMatch[1] : null;
+}
+
 function getDirectDownloadLink(driveLink) {
-    const fileIdMatch = driveLink.match(/\/file\/d\/(.*?)\//);
-    if (fileIdMatch) {
-        const fileId = fileIdMatch[1];
+    const fileId = getFileId(driveLink);
+    if (fileId) {
         return `https://drive.google.com/uc?export=download&id=${fileId}`;
     }
     return null;
@@ -11,23 +15,36 @@ function extractFileName(anchor) {
     const secondDiv = anchor.querySelector('div:nth-child(2)');
     if (secondDiv) {
         const firstDivInsideSecondDiv = secondDiv.querySelector('div:nth-child(1)');
-        if (firstDivInsideSecondDiv) {
+        if (firstDivInsideSecondDiv && firstDivInsideSecondDiv.textContent.trim()) {
             return firstDivInsideSecondDiv.textContent.trim();
         }
     }
+    // Fallbacks: aria-label, title, visible text of the anchor
+    const aria = anchor.getAttribute('aria-label');
+    if (aria && aria.trim()) return aria.trim();
+    if (anchor.title && anchor.title.trim()) return anchor.title.trim();
+    if (anchor.textContent && anchor.textContent.trim()) return anchor.textContent.trim();
+    console.warn('[ClassFetch] Could not extract file name for', anchor.href);
     return null;
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "getDriveLinks") {
+        const seen = new Set();
         const driveFiles = Array.from(document.querySelectorAll('a'))
             .filter(a => a.href.includes("drive.google.com/file/d/"))
             .map(a => {
                 const fileName = extractFileName(a);
                 const fileLink = getDirectDownloadLink(a.href);
-                return { name: fileName, link: fileLink };
+                return { name: fileName, link: fileLink, id: getFileId(a.href) };
             })
-            .filter(file => file.link !== null && file.name !== null);
+            .filter(file => file.link !== null && file.name !== null && file.id !== null)
+            .filter(file => {
+                if (seen.has(file.id)) return false;
+                seen.add(file.id);
+                return true;
+            })
+            .map(({ name, link }) => ({ name, link }));
 
         sendResponse({ files: driveFiles });
     }
