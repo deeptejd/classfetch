@@ -6,7 +6,7 @@ function getFileId(driveLink) {
 function getDirectDownloadLink(driveLink) {
     const fileId = getFileId(driveLink);
     if (fileId) {
-        return `https://drive.google.com/uc?export=download&id=${fileId}`;
+        return `https://drive.google.com/uc?export=download&id=${fileId}&confirm=t`;
     }
     return null;
 }
