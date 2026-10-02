@@ -11,6 +11,7 @@
   "permissions": ["activeTab", "downloads"],
 
   "action": {
+    "default_title": "ClassFetch",
     "default_popup": "./views/popup.html",
     "default_icon": {
       "16": "./icons/16.png",
