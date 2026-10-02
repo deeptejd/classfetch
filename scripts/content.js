@@ -31,7 +31,12 @@ function extractFileName(anchor) {
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "getDriveLinks") {
         const seen = new Set();
-        const driveFiles = Array.from(document.querySelectorAll('a'))
+        const anchors = Array.from(document.querySelectorAll('a'));
+        const skipped = anchors.filter(a =>
+            (a.href.includes('drive.google.com') && !a.href.includes('drive.google.com/file/d/')) ||
+            a.href.includes('docs.google.com')
+        ).length;
+        const driveFiles = anchors
             .filter(a => a.href.includes("drive.google.com/file/d/"))
             .map(a => {
                 const fileName = extractFileName(a);
@@ -46,6 +51,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             })
             .map(({ name, link }) => ({ name, link }));
 
-        sendResponse({ files: driveFiles });
+        sendResponse({ files: driveFiles, skipped: skipped });
     }
 });

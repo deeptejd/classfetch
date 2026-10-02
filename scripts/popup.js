@@ -68,6 +68,9 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             });
 
             setButtonsEnabled(true);
+            if (response.skipped > 0) {
+                setStatus(`Found ${files.length} file(s); skipped ${response.skipped} non-Drive attachment(s).`);
+            }
 
             function downloadFile(link, name, onDone) {
                 chrome.downloads.download({ url: link, filename: name }, function (downloadId) {
@@ -126,7 +129,8 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
             });
 
         } else {
-            fileList.textContent = 'No Google Drive files found. Scroll the stream so attachments load, refresh the page, then reopen this popup.';
+            fileList.textContent = 'No Google Drive files found. Scroll the stream so attachments load, refresh the page, then reopen this popup.'
+                + (response && response.skipped > 0 ? ` (${response.skipped} non-Drive attachment(s) skipped.)` : '');
         }
     });
 });
