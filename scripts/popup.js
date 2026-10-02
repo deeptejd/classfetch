@@ -26,7 +26,7 @@ function buildStatus(started, openedTab, failed, reason) {
 }
 
 async function downloadFile(link, name, li) {
-    
+    li.dataset.state = 'pending';
     let downloadId;
     try {
         downloadId = await extAPI.download({ url: link, filename: name });
@@ -35,10 +35,10 @@ async function downloadFile(link, name, li) {
         console.warn('[ClassFetch] download failed for', name, ':', reason, '— opening in a new tab instead.');
         try {
             await extAPI.createTab({ url: link });
-
+            li.dataset.state = 'opened';
             return { ok: true, fallback: true, reason };
         } catch (tabErr) {
-
+            li.dataset.state = 'failed';
             return { ok: false, reason };
         }
     }
@@ -47,11 +47,11 @@ async function downloadFile(link, name, li) {
         const items = await extAPI.downloadsSearch({ id: downloadId });
         const item = items && items[0];
         if (item && /\.html?$/i.test(item.filename)) {
-
+            li.dataset.state = 'failed';
             return { ok: false, reason: 'downloaded as .htm — the owner may have disabled downloads for this file' };
         }
     } catch (_) { /* best-effort check */ }
-
+    li.dataset.state = 'done';
     return { ok: true };
 }
 

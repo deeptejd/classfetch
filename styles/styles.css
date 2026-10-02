@@ -129,6 +129,35 @@ body {
     content: "Ready.";
 }
 
+.status.error {
+    color: var(--error);
+}
+
+/* Per-file download state */
+.file-list li::after {
+    margin-left: auto;
+    font-size: 11px;
+    color: var(--text-dim);
+}
+
+.file-list li[data-state="pending"]::after {
+    content: "…";
+}
+
+.file-list li[data-state="done"]::after {
+    content: "✓";
+    color: var(--accent);
+}
+
+.file-list li[data-state="opened"]::after {
+    content: "↗";
+}
+
+.file-list li[data-state="failed"]::after {
+    content: "✗";
+    color: var(--error);
+}
+
 /* Buttons */
 .button-group {
     display: flex;
