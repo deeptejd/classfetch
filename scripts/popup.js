@@ -12,6 +12,14 @@ function setButtonsEnabled(enabled) {
     downloadAllBtn.disabled = !enabled;
 }
 
+function buildStatus(started, openedTab, failed, reason) {
+    const parts = [];
+    if (started > 0) parts.push(`Started ${started} download(s)`);
+    if (openedTab > 0) parts.push(`opened ${openedTab} in a new tab`);
+    if (failed > 0) parts.push(`${failed} failed${reason ? ' (' + reason + ')' : ''}`);
+    return parts.length > 0 ? parts.join('; ') + '.' : 'Nothing happened.';
+}
+
 setButtonsEnabled(false);
 
 chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -63,11 +71,19 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
 
             function downloadFile(link, name, onDone) {
                 chrome.downloads.download({ url: link, filename: name }, function (downloadId) {
-                    if (chrome.runtime.lastError || downloadId === undefined) {
-                        console.warn('[ClassFetch] Download failed for', name, chrome.runtime.lastError && chrome.runtime.lastError.message);
-                        onDone(false, name);
+                    const err = chrome.runtime.lastError;
+                    if (err || downloadId === undefined) {
+                        const reason = err ? err.message : 'unknown error';
+                        console.warn('[ClassFetch] chrome.downloads failed for', name, ':', reason, '— opening in a new tab instead.');
+                        chrome.tabs.create({ url: link }, function () {
+                            if (chrome.runtime.lastError) {
+                                onDone(false, name, reason);
+                            } else {
+                                onDone(true, name, reason);
+                            }
+                        });
                     } else {
-                        onDone(true, name);
+                        onDone(true, name, null);
                     }
                 });
             }
@@ -81,28 +97,30 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                     return;
                 }
                 let failed = 0;
+                let fallback = 0;
                 let done = 0;
-                selected.forEach(f => downloadFile(f.link, f.name, function (ok, name) {
+                let firstReason = null;
+                selected.forEach(f => downloadFile(f.link, f.name, function (ok, name, reason) {
                     done++;
                     if (!ok) failed++;
+                    else if (reason) { fallback++; if (!firstReason) firstReason = reason; }
                     if (done === selected.length) {
-                        setStatus(failed === 0
-                            ? `Started ${selected.length} download(s).`
-                            : `Started ${selected.length - failed} download(s); ${failed} failed (check permissions — files may need download access enabled by the owner).`);
+                        setStatus(buildStatus(selected.length - failed - fallback, fallback, failed, firstReason));
                     }
                 }));
             });
 
             downloadAllBtn.addEventListener('click', function () {
                 let failed = 0;
+                let fallback = 0;
                 let done = 0;
-                files.forEach(f => downloadFile(f.link, f.name, function (ok) {
+                let firstReason = null;
+                files.forEach(f => downloadFile(f.link, f.name, function (ok, name, reason) {
                     done++;
                     if (!ok) failed++;
+                    else if (reason) { fallback++; if (!firstReason) firstReason = reason; }
                     if (done === files.length) {
-                        setStatus(failed === 0
-                            ? `Started ${files.length} download(s).`
-                            : `Started ${files.length - failed} download(s); ${failed} failed (check permissions — files may need download access enabled by the owner).`);
+                        setStatus(buildStatus(files.length - failed - fallback, fallback, failed, firstReason));
                     }
                 }));
             });
