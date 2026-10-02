@@ -86,7 +86,15 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
                             }
                         });
                     } else {
-                        onDone(true, name, null);
+                        // Permission-blocked files still "download", but Drive serves an .htm error page
+                        chrome.downloads.search({ id: downloadId }, function (items) {
+                            const item = items && items[0];
+                            if (item && /\.html?$/i.test(item.filename)) {
+                                onDone(false, name, 'downloaded as .htm — the owner may have disabled downloads for this file');
+                            } else {
+                                onDone(true, name, null);
+                            }
+                        });
                     }
                 });
             }
