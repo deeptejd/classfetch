@@ -12,6 +12,10 @@ function getDirectDownloadLink(driveLink) {
 }
 
 function extractFileName(anchor) {
+    // Most reliable first: explicit attributes/fields Classroom may expose
+    const dataName = anchor.getAttribute('data-filename');
+    if (dataName && dataName.trim()) return dataName.trim();
+
     const secondDiv = anchor.querySelector('div:nth-child(2)');
     if (secondDiv) {
         const firstDivInsideSecondDiv = secondDiv.querySelector('div:nth-child(1)');
@@ -19,10 +23,13 @@ function extractFileName(anchor) {
             return firstDivInsideSecondDiv.textContent.trim();
         }
     }
-    // Fallbacks: aria-label, title, visible text of the anchor
+    // Fallbacks: aria-label, title, first non-empty descendant div, visible text
     const aria = anchor.getAttribute('aria-label');
     if (aria && aria.trim()) return aria.trim();
     if (anchor.title && anchor.title.trim()) return anchor.title.trim();
+    const descendantDivs = Array.from(anchor.querySelectorAll('div'));
+    const firstWithText = descendantDivs.find(d => d.children.length === 0 && d.textContent.trim());
+    if (firstWithText) return firstWithText.textContent.trim();
     if (anchor.textContent && anchor.textContent.trim()) return anchor.textContent.trim();
     console.warn('[ClassFetch] Could not extract file name for', anchor.href);
     return null;
