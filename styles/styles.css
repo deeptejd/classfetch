@@ -1,13 +1,27 @@
+:root {
+    --bg: #ffffff;
+    --surface: #f7f8f7;
+    --border: #e4e7e4;
+    --text: #1a1d1a;
+    --text-dim: #6b736b;
+    --accent: #0a7a5c;
+    --accent-hover: #065f47;
+    --error: #b3261e;
+    --radius: 4px;
+}
+
 body {
-    font-family: "Segoe UI", sans-serif;
-    background-color: #f9f9f9;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background-color: var(--bg);
     margin: 0;
     padding: 16px;
-    color: #222;
+    color: var(--text);
     display: flex;
     flex-direction: column;
-    min-width: 320px;
-    max-width: 500px;
+    min-width: 340px;
+    max-width: 460px;
+    font-size: 13px;
+    line-height: 1.45;
 }
 
 /* Header section */
@@ -15,9 +29,10 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 10px;
     flex-wrap: wrap;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
 }
 
 .header-right {
@@ -27,11 +42,10 @@ body {
 }
 
 .github-icon {
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-    opacity: 0.8;
-    transition: opacity 0.2s ease;
+    width: 18px;
+    height: 18px;
+    opacity: 0.55;
+    transition: opacity 0.15s ease;
 }
 
 .github-icon:hover {
@@ -39,69 +53,108 @@ body {
 }
 
 .logo {
-    height: 60px;
+    height: 36px;
     object-fit: contain;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-
-
-.main-heading {
-    font-size: 1.5rem;
-    margin: 0;
+    display: block;
 }
 
 /* Main section */
 .section-title {
-    margin: 16px 0 8px;
-    font-size: 1.1rem;
+    margin: 14px 0 8px;
+    font-size: 12px;
     font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-dim);
 }
 
 .file-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 16px;
-    max-height: 200px;
+    margin: 0 0 12px;
+    max-height: 220px;
     overflow-y: auto;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 12.5px;
 }
 
-/* Button section */
+.file-list:not(:has(li)) {
+    padding: 14px 12px;
+}
+
+.file-list li {
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border);
+    transition: background-color 0.12s ease;
+    word-break: break-word;
+}
+
+.file-list li:last-child {
+    border-bottom: none;
+}
+
+.file-list li:hover {
+    background-color: #eef2ef;
+}
+
+.file-list input[type="checkbox"] {
+    accent-color: var(--accent);
+    flex-shrink: 0;
+}
+
+.file-list:empty::before {
+    content: "No files yet — open a Classroom post with Drive attachments.";
+    display: block;
+    color: var(--text-dim);
+    font-size: 12px;
+}
+
+/* Status message */
+.status {
+    margin: 0 0 12px;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    min-height: 1.2em;
+}
+
+.status:empty::before {
+    content: "Ready.";
+}
+
+/* Buttons */
 .button-group {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .primary-btn {
     flex: 1;
-    padding: 10px;
-    background-color: #06765d;
-    color: white;
-    font-weight: bold;
+    padding: 9px 12px;
+    background-color: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
     border: none;
-    border-radius: 6px;
+    border-radius: var(--radius);
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.15s ease;
 }
 
 .primary-btn:hover {
-    background-color: #014d3c;
-}
-/* Status message */
-.status {
-    font-size: 0.85rem;
-    color: #555;
-    min-height: 1.2em;
-    margin: 4px 0 10px;
+    background-color: var(--accent-hover);
 }
 
 .primary-btn:disabled {
-    background-color: #9fbdb4;
+    background-color: var(--surface);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
     cursor: not-allowed;
 }
