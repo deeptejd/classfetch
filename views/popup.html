@@ -16,15 +16,7 @@
     <div class="header-right">
       <a href="https://github.com/deeptejd/ClassFetch" target="_blank" rel="noopener noreferrer"
         aria-label="View source code on GitHub">
-        <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub Logo"
-          class="icon github-icon" />
-      </a>
-
-      <a href="https://www.producthunt.com/posts/classfetch?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-classfetch"
-        target="_blank" rel="noopener noreferrer" aria-label="View ClassFetch on Product Hunt">
-        <img
-          src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=841008&theme=light&t=1738484122639"
-          alt="ClassFetch on Product Hunt" width="90" height="54" />
+        <img src="https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png" alt="GitHub" class="icon github-icon" />
       </a>
     </div>
   </header>
@@ -34,12 +26,16 @@
     <h3 class="section-title">Available Files</h3>
     <ul id="fileList" class="file-list" aria-label="List of downloadable files"></ul>
 
+    <p id="status" class="status" role="status"></p>
+
     <div class="button-group">
       <button id="downloadSelected" class="primary-btn">Download Selected</button>
       <button id="downloadAll" class="primary-btn">Download All</button>
+      <button id="refresh" class="secondary-btn">Refresh</button>
     </div>
   </main>
 
+  <script src="../scripts/ext-api.js"></script>
   <script src="../scripts/popup.js"></script>
 </body>
 
