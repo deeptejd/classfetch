@@ -93,3 +93,15 @@ body {
 .primary-btn:hover {
     background-color: #014d3c;
 }
+/* Status message */
+.status {
+    font-size: 0.85rem;
+    color: #555;
+    min-height: 1.2em;
+    margin: 4px 0 10px;
+}
+
+.primary-btn:disabled {
+    background-color: #9fbdb4;
+    cursor: not-allowed;
+}
