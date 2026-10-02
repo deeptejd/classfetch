@@ -35,7 +35,7 @@ function extractFileName(anchor) {
     return null;
 }
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+extAPI.onMessage((request) => {
     if (request.action === "getDriveLinks") {
         const seen = new Set();
         const anchors = Array.from(document.querySelectorAll('a'));
@@ -58,6 +58,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             })
             .map(({ name, link }) => ({ name, link }));
 
-        sendResponse({ files: driveFiles, skipped: skipped });
+        return { files: driveFiles, skipped: skipped };
     }
 });

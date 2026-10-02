@@ -30,7 +30,7 @@
   "content_scripts": [
     {
       "matches": ["https://classroom.google.com/*"],
-      "js": ["./scripts/content.js"]
+      "js": ["./scripts/ext-api.js", "./scripts/content.js"]
     }
   ],
   "browser_specific_settings": {
