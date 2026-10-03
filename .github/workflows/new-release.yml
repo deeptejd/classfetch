@@ -36,6 +36,6 @@ jobs:
       - name: Push as a github release
         uses: ncipollo/release-action@v1
         with:
-          name: "ClassFetch ${GITHUB_REF_NAME}"
+          name: "ClassFetch ${{ github.ref_name }}"
           artifacts: classfetch-${{ github.ref_name }}.zip
           tag: ${{ github.ref_name }}
