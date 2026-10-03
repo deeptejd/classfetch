@@ -9,7 +9,7 @@ const extAPI = (() => {
             download: (opts) => browser.downloads.download(opts),
             downloadsSearch: (q) => browser.downloads.search(q),
             createTab: (opts) => browser.tabs.create(opts),
-            onMessage: (fn) => browser.runtime.onMessage.addListener((req) => fn(req)),
+            onMessage: (fn) => browser.runtime.onMessage.addListener((req) => Promise.resolve(fn(req))),
         };
     }
     const call = (fn, ctx, ...args) => new Promise((resolve, reject) => {

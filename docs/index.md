@@ -48,3 +48,7 @@ The file's owner disabled downloads for it. Ask them to allow it.
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change. See the [README](https://github.com/deeptejd/classfetch#readme) for development notes.
+
+## Privacy
+
+See the [Privacy Policy](privacy-policy.md) — ClassFetch collects no data.

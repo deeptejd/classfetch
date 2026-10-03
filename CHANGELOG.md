@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/), versioning follows [SemVer](https://semver.org/). `manifest.json` is the single source of truth for the version; release tags are `vX.Y.Z`.
 
+## [1.6.3]
+
+### Fixed
+- Firefox: file scans always reported "No Google Drive files found" because the `browser.runtime.onMessage` listener returned a plain object instead of a Promise, so the response never reached the popup.
+
 ## [1.6.2]
 
 ### Fixed
