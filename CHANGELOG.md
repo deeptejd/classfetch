@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/), versioning follows [SemVer](https://semver.org/). `manifest.json` is the single source of truth for the version; release tags are `vX.Y.Z`.
 
+## [1.6.2]
+
+### Fixed
+- Removed the leading `./` from paths in `manifest.json`; the Chrome Web Store rejected the package, reporting icons as missing.
+
 ## [1.6.1]
 
 ### Added
@@ -30,7 +35,7 @@ All notable changes to this project are documented here. Format follows [Keep a 
 
 ### Version note
 
-`1.6.0` was kept local only and folded into `1.6.1`; the public version history jumps from `1.5.1` to `1.6.1`.
+`1.6.0` was kept local only and folded into `1.6.1`; the public version history jumps from `1.5.1` to `1.6.1` to `1.6.2`.
 
 ## [1.5.1] and earlier
 

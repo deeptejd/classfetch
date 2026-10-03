@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ClassFetch",
   "description": "Allows you to download multiple files from Google Classroom with a single click.",
-  "version": "1.6.1",
+  "version": "1.6.2",
 
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
@@ -12,26 +12,26 @@
 
   "action": {
     "default_title": "ClassFetch",
-    "default_popup": "./views/popup.html",
+    "default_popup": "views/popup.html",
     "default_icon": {
-      "16": "./icons/16.png",
-      "32": "./icons/32.png",
-      "48": "./icons/48.png",
-      "128": "./icons/128.png"
+      "16": "icons/16.png",
+      "32": "icons/32.png",
+      "48": "icons/48.png",
+      "128": "icons/128.png"
     }
   },
 
   "icons": {
-    "16": "./icons/16.png",
-    "32": "./icons/32.png",
-    "48": "./icons/48.png",
-    "128": "./icons/128.png"
+    "16": "icons/16.png",
+    "32": "icons/32.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
   },
 
   "content_scripts": [
     {
       "matches": ["https://classroom.google.com/*"],
-      "js": ["./scripts/ext-api.js", "./scripts/content.js"]
+      "js": ["scripts/ext-api.js", "scripts/content.js"]
     }
   ],
   "browser_specific_settings": {
