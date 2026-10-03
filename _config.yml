@@ -3,3 +3,4 @@ description: Bulk-download Google Drive attachments from Google Classroom posts 
 theme: jekyll-theme-architect
 github_url: https://github.com/deeptejd
 github_project_url: https://github.com/deeptejd/classfetch
+show_downloads: true
