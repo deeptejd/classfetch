@@ -1,49 +1,69 @@
-![Promo Title Edge Large (1)](https://github.com/user-attachments/assets/9ea407c4-3a69-4b30-b242-d5b58e0070b9)
-[![Edge Add-on](https://img.shields.io/badge/Edge%20Add--on-ClassFetch-blue?logo=microsoftedge&logoColor=white&style=plastic)](https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii) [![Product Hunt](https://img.shields.io/badge/Product%20Hunt-ClassFetch-ff3c00?logo=product-hunt&logoColor=white&style=plastic)](https://www.producthunt.com/posts/classfetch) [![GitHub Release](https://img.shields.io/github/v/release/deeptejd/classfetch?style=plastic)](https://github.com/deeptejd/classfetch/releases)
+# ClassFetch
 
+[![Edge Add-on](https://img.shields.io/badge/Edge%20Add--on-ClassFetch-blue?logo=microsoftedge&logoColor=white&style=plastic)](https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii) [![GitHub Release](https://img.shields.io/github/v/release/deeptejd/classfetch?style=plastic)](https://github.com/deeptejd/classfetch/releases)
 
-
-#### Download all your Google Classroom files in one click! This browser extension lets you bulk download attachments from assignments and posts, saving you from the hassle of opening each file manually or relying on tedious hacks. 'Fast, simple, efficient'.
+Bulk-download Google Drive attachments from Google Classroom posts in one click — no more opening each file by hand.
 
 ## Features
 
-- Download all the drive files in a Google Classroom announcement
-- Select multiple files to be downloaded at once
+- Lists Drive attachments from the current Classroom stream or post and downloads them in bulk
+- Select individual files or grab everything listed
+- Skips Drive folders / Docs links and tells you what was skipped
+- Deduplicates the same file appearing multiple times on a page
+- Reports per-file status: done, opened in a new tab, or failed (with the reason)
+- Refresh button re-scans the page without reopening the popup
 
 ## Installation
 
-1. Download or clone this repository.
-2. Open the Extension Management page by navigating to `chrome://extensions`
-   - Alternatively, open this page by clicking on the Extensions menu button and selecting Manage Extensions at the bottom of the menu
-   - Alternatively, open this page by clicking on the Chrome menu, hovering over More Tools then selecting Extensions
-3. Enable Developer Mode by clicking the toggle switch next to Developer mode
-4. Click the Load unpacked button and select the extension directory
-   Note: Remember to select the root folder, and reload the classroom website if it is open in the background
-5. Pin the extension for easier access
+**From a store:** install [ClassFetch on Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii), or the Chrome Web Store / Firefox listing when available.
+
+**From source:**
+
+1. Clone this repository (or download a release zip and extract it).
+2. Open the extensions page:
+   - Chrome/Edge: `chrome://extensions`
+   - Firefox: `about:debugging#/runtime/this-firefox`
+3. Chrome/Edge: enable **Developer mode**, click **Load unpacked**, and select the repository root (the folder containing `manifest.json`).
+   Firefox: click **Load Temporary Add-on** and select `manifest.json`.
+4. Reload any open Google Classroom tab, and re-run the add-on after every update.
 
 ## Usage
 
 ![Demo Screenshot](https://github.com/user-attachments/assets/9e8112b9-e25f-41d3-bf19-54f754e2c616)
 
-1. Open the Google Classroom announcement where your teacher has attached multiple files
-2. While this page is open, click on the 'ClassFetch' exntension. Your files should now be listed along with a checkbox on the left
-3. Select the files that you want to download and click the 'Download Selected' button. (This might take a while depending on the size of the files)
-4. Alternatively, select the 'Download All' button to download all the files that are currently being listed
-> Scroll down for FAQs (Common issue: Downloading ```.htm``` files)
+1. Open a Google Classroom post or stream with Drive attachments, and scroll so the attachments load.
+2. Click the ClassFetch toolbar icon. Files that ClassFetch can download are listed with checkboxes.
+3. Check the files you want and click **Download Selected**, or click **Download All**.
+4. The status line at the bottom reports how many downloads started, fell back to a new tab, or failed — and why.
+5. If more files loaded while scrolling, click **Refresh** to re-scan the page.
+
+Notes:
+- Only real Drive file attachments are downloadable. Google Slides, native Docs/Sheets links, and folders are skipped (ClassFetch tells you how many) — export those manually from Drive.
+- If a file's owner has disabled downloading, ClassFetch reports it instead of saving a junk file.
+
+## Development
+
+No build step: it's a plain MV3 extension (`manifest.json`, `scripts/`, `views/`, `styles/`, `icons/`). Edit files, reload the extension at the browser's extensions page, and refresh the Classroom tab.
+
+- `scripts/content.js` — runs on `classroom.google.com`, scrapes Drive attachments
+- `scripts/popup.js` + `views/popup.html` — toolbar popup UI
+- `scripts/ext-api.js` — Firefox/Chrome API shim
+- See `AGENTS.md` for repo conventions and gotchas.
+
+## FAQ
+
+**My files aren't showing up, even though they're in the stream.**
+Scroll the stream so the attachment actually renders, then press Refresh in the popup. ClassFetch only downloads real Google Drive file attachments — Google Slides/Docs links are skipped and counted as "skipped."
+
+**A downloaded file was flagged as `.htm` rather than the real file.**
+The file's owner disabled downloads for it. Ask them to allow it.
 
 ## Releasing (maintainers)
 
 1. Bump `version` in `manifest.json` (SemVer) and add a `CHANGELOG.md` entry. Commit both.
 2. `git tag vX.Y.Z && git push origin main --tags`
-3. Pushing the tag builds the zip and creates the GitHub release automatically. If it fails with "version does not match", fix the manifest and re-tag.
+3. Pushing the tag builds the zip and creates the GitHub release automatically. If it fails with "version does not match," fix the manifest and re-tag.
 
 ## Contributing
 
-Pull requests are welcome, there's so much that could be added to make this extension better for everyone! For major changes, please open an issue first to discuss what you would like to change.
-
-## FAQ
-### 1. My files arent showing up in the extension even if they are clearly visible in the classroom stream
-If this happens, try refreshing your classroom page. If the files still don't show up then check if they are indeed google drive files. This extension only works with google drive files for now, which means google slides or other files will not show up. This will be added in a future release so keep an eye out for a new release.
-
-### 2. The extension downloads ```.htm``` files instead of the actual files, and says ```No permissions```
-This happens when the owner of the file (likely your prof) manually unchecked the permission that allows you to download the files. Talk to the owner of the file and ask them to enable download permissions. See [this issue response](https://github.com/DeeptejD/ClassFetch/issues/1#issuecomment-3014991188) for a detailed explanation on how to do just that.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.

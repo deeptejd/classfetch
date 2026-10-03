@@ -2,7 +2,7 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/), versioning follows [SemVer](https://semver.org/). `manifest.json` is the single source of truth for the version; release tags are `vX.Y.Z`.
 
-## [1.6.0]
+## [1.6.1]
 
 ### Added
 - Refresh button: re-scan the page without reopening the popup (Classroom virtualizes its stream, so newly scrolled-in attachments are picked up).
@@ -25,6 +25,12 @@ All notable changes to this project are documented here. Format follows [Keep a 
 ### Changed
 - Popup UI: quieter palette, single accent color, sharper corners, slimmer header (Product Hunt badge removed).
 - Release workflow is triggered by pushing a `v*` tag and refuses to publish if the tag doesn't match `manifest.json`'s version.
+- Release zip now puts `manifest.json` at the root so it can be uploaded to Chrome/Edge/Firefox stores directly (previously nested under a `classfetch/` folder).
+- Reworked README: accurate features/usage, per-browser install steps, development and FAQ sections.
+
+### Version note
+
+`1.6.0` was kept local only and folded into `1.6.1`; the public version history jumps from `1.5.1` to `1.6.1`.
 
 ## [1.5.1] and earlier
 
