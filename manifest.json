@@ -36,7 +36,10 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "classfetch@astrodeeptej"
+      "id": "classfetch@astrodeeptej",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
     }
   }
 }
