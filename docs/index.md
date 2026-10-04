@@ -47,7 +47,7 @@ The goal was simple, to let users select multiple files and download them in one
 2. Click the ClassFetch toolbar icon. Files that ClassFetch can download are listed with checkboxes
 3. Check the files you want and click **Download Selected**, or click **Download All**
 
-<img width="1378" height="875" alt="Screenshot showing a file from Google Classroom listed in the extension" src="https://github.com/user-attachments/assets/bd69cc1b-3750-4f47-98be-7428e9fa8f83" />
+<img alt="Screenshot showing a file from Google Classroom listed in the extension" src="https://github.com/user-attachments/assets/bd69cc1b-3750-4f47-98be-7428e9fa8f83" />
 
 ## FAQ
 **My files aren't showing up, even though they're in the stream.**
