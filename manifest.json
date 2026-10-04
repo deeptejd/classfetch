@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "ClassFetch",
   "description": "Allows you to download multiple files from Google Classroom with a single click.",
-  "version": "1.6.3",
+  "version": "1.6.4",
 
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"

@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/), versioning follows [SemVer](https://semver.org/). `manifest.json` is the single source of truth for the version; release tags are `vX.Y.Z`.
 
+## [1.6.4]
+
+### Fixed
+- Firefox: added required `browser_specific_settings.gecko.data_collection_permissions` to the manifest; the extension now loads/signs on Firefox.
+
 ## [1.6.3]
 
 ### Fixed
