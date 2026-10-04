@@ -2,6 +2,11 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/), versioning follows [SemVer](https://semver.org/). `manifest.json` is the single source of truth for the version; release tags are `vX.Y.Z`.
 
+## [Unreleased]
+
+### Added
+- MIT `LICENSE` file; included in release zips.
+
 ## [1.6.4]
 
 ### Fixed

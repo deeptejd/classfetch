@@ -64,6 +64,10 @@ The file's owner disabled downloads for it. Ask them to allow it.
 2. `git tag vX.Y.Z && git push origin main --tags`
 3. Pushing the tag builds the zip and creates the GitHub release automatically. If it fails with "version does not match," fix the manifest and re-tag.
 
+## License
+
+[MIT](LICENSE)
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change.

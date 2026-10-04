@@ -30,7 +30,7 @@ jobs:
       - name: Create ZIP
         run: |
           mkdir classfetch
-          cp -r icons scripts styles views manifest.json classfetch/
+          cp -r icons scripts styles views manifest.json LICENSE classfetch/
           cd classfetch && zip -r ../classfetch-${GITHUB_REF_NAME}.zip *
 
       - name: Push as a github release
