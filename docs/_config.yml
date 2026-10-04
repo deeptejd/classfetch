@@ -1,6 +1,6 @@
 title: ClassFetch
-description: Bulk-download Google Drive attachments from Google Classroom posts in one click.
+description: Bulk-download Google Drive attachments from Google Classroom posts in one click. No more opening and downloading each file one by one.
 theme: jekyll-theme-architect
 github_url: https://github.com/deeptejd
 github_project_url: https://github.com/deeptejd/classfetch
-show_downloads: true
+show_downloads: false

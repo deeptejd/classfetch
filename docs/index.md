@@ -1,54 +1,60 @@
 ClassFetch is a free, open-source browser extension for Chrome, Edge, and Firefox. Open any Classroom stream or post, click the ClassFetch icon, and grab every Drive attachment at once.
 
-<a href="https://github.com/deeptejd/classfetch/releases/latest" class="button"><small>Download</small> ClassFetch .zip</a>
+## Why?
+The goal was simple, to let users select multiple files and download them in one click instead of having to click on each file and downloading it one by one.
 
-## Features
+## How to install?
+### From browser extension store
+<p>
+  <!-- <a href="#"><img height="48" alt="Available in the Chrome Web Store" src="https://github.com/user-attachments/assets/d99135b0-a065-4915-a923-1baec5c49cfa" /></a>
+  <a href="#"><img height="48" alt="Get the Firefox add-on" src="https://github.com/user-attachments/assets/ac029f81-3807-45a3-bff2-b00c1c9f6ddf" /></a> -->
+  <a href="https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii"><img height="48" alt="Get it from Microsoft Edge" src="https://github.com/user-attachments/assets/f9308d4b-f62c-43c6-b9d4-8be8335d2255" /></a>
+</p>
 
-- Lists Drive attachments from the current Classroom stream or post and downloads them in bulk
-- Select individual files or grab everything listed
-- Skips Drive folders / Docs links and tells you what was skipped
-- Deduplicates the same file appearing multiple times on a page
-- Reports per-file status: done, opened in a new tab, or failed (with the reason)
-- Refresh button re-scans the page without reopening the popup
+### From GitHub releases
+1. Download the latest release from the [Releases page](https://github.com/deeptejd/classfetch/releases/latest). Get the `.zip` asset (not the source code!)
+2. Unzip it somewhere permanent. Browsers load the extension from that folder, so don't delete or move it afterwards. The folder you load must be the one that directly contains `manifest.json`
+3. Follow the steps for your browser:
 
-## Installation
+**Chrome**
+1. Open `chrome://extensions`
+2. Turn on **Developer mode** (top-right toggle)
+3. Click **Load unpacked** and select the unzipped folder
 
-### From a browser store
+**Edge**
+1. Open `edge://extensions`
+2. Turn on **Developer mode** (left sidebar toggle)
+3. Click **Load unpacked** and select the unzipped folder
 
-Install [ClassFetch on Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii), or the Chrome Web Store / Firefox listing when available.
+**Brave**
+1. Open `brave://extensions`
+2. Turn on **Developer mode** (top-right toggle)
+3. Click **Load unpacked** and select the unzipped folder
 
-### From source
+**Firefox**
+1. Open `about:debugging#/runtime/this-firefox`
+2. Click **Load Temporary Add-on**
+3. Select the `manifest.json` file inside the unzipped folder
 
-1. Clone this repository, or download a release zip from [Releases](https://github.com/deeptejd/classfetch/releases) and extract it.
-2. Open your extensions page:
-   - Chrome / Edge: `chrome://extensions`
-   - Firefox: `about:debugging#/runtime/this-firefox`
-3. **Chrome / Edge:** enable **Developer mode**, click **Load unpacked**, and select the folder containing `manifest.json`.
-   **Firefox:** click **Load Temporary Add-on** and select `manifest.json`.
-4. Reload any open Google Classroom tab. Re-run the add-on after every update.
+> Firefox removes temporary add-ons when the browser closes, so you'll need to load it again after each restart
 
-## How to Use
+**After installing or updating**
+- Reload any open Google Classroom tab so the extension is picked up
+- To update, download the new release, replace the old folder's contents, then click the **reload** icon on the extension's card (Chrome/Edge/Brave) or **Reload** (Firefox) on the same extensions page
 
-![Demo](https://github.com/user-attachments/assets/9e8112b9-e25f-41d3-bf19-54f754e2c616)
+## How to use?
+1. Open a Google Classroom post or stream with Drive attachments, and scroll so the attachments load
+2. Click the ClassFetch toolbar icon. Files that ClassFetch can download are listed with checkboxes
+3. Check the files you want and click **Download Selected**, or click **Download All**
 
-1. Open a Google Classroom post or stream with Drive attachments, and scroll so the attachments load.
-2. Click the ClassFetch toolbar icon. Files that ClassFetch can download are listed with checkboxes.
-3. Check the files you want and click **Download Selected**, or click **Download All**.
-4. The status line reports how many downloads started, fell back to a new tab, or failed — and why.
-5. If more files loaded while scrolling, click **Refresh** to re-scan the page.
+<img width="1378" height="875" alt="Screenshot showing a file from Google Classroom listed in the extension" src="https://github.com/user-attachments/assets/bd69cc1b-3750-4f47-98be-7428e9fa8f83" />
 
 ## FAQ
-
 **My files aren't showing up, even though they're in the stream.**
 Scroll the stream so the attachment actually renders, then press Refresh in the popup. ClassFetch only downloads real Google Drive file attachments — Google Slides/Docs links are skipped and counted as "skipped."
 
 **A downloaded file was flagged as `.htm` rather than the real file.**
 The file's owner disabled downloads for it. Ask them to allow it.
 
-## Contributing
-
-Pull requests are welcome. For major changes, please open an issue first to discuss what you'd like to change. See the [README](https://github.com/deeptejd/classfetch#readme) for development notes.
-
 ## Privacy
-
 See the [Privacy Policy](privacy-policy.md) — ClassFetch collects no data.
