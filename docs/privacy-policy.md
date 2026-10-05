@@ -5,7 +5,7 @@ title: Privacy Policy
 
 # Privacy Policy for ClassFetch
 
-_Last updated: October 3, 2026_
+_Last updated: October 5, 2026_
 
 ClassFetch is a free, open-source browser extension that downloads files attached to Google Classroom posts. This policy describes what data the extension handles.
 
@@ -39,4 +39,4 @@ Any changes to this policy will be posted in this repository alongside the exten
 
 ## Contact
 
-Questions or concerns: open an issue at https://github.com/deeptejd/classfetch/issues, or email the publisher contact address listed on the Chrome Web Store.
+Questions or concerns: open an issue at https://github.com/deeptejd/classfetch/issues.

@@ -16,43 +16,27 @@ The goal was simple, to let users select multiple files and download them in one
 2. Unzip it somewhere permanent. Browsers load the extension from that folder, so don't delete or move it afterwards. The folder you load must be the one that directly contains `manifest.json`
 3. Follow the steps for your browser:
 
-<details>
-<summary><b>Chrome</b></summary>
-
+**Chrome**
 1. Open `chrome://extensions`
 2. Turn on **Developer mode** (top-right toggle)
 3. Click **Load unpacked** and select the unzipped folder
 
-</details>
-
-<details>
-<summary><b>Edge</b></summary>
-
+**Edge**
 1. Open `edge://extensions`
 2. Turn on **Developer mode** (left sidebar toggle)
 3. Click **Load unpacked** and select the unzipped folder
 
-</details>
-
-<details>
-<summary><b>Brave</b></summary>
-
+**Brave**
 1. Open `brave://extensions`
 2. Turn on **Developer mode** (top-right toggle)
 3. Click **Load unpacked** and select the unzipped folder
 
-</details>
-
-<details>
-<summary><b>Firefox</b></summary>
-
+**Firefox**
 1. Open `about:debugging#/runtime/this-firefox`
 2. Click **Load Temporary Add-on**
 3. Select the `manifest.json` file inside the unzipped folder
 
 > Firefox removes temporary add-ons when the browser closes, so you'll need to load it again after each restart
-
-</details>
 
 **After installing or updating**
 - Reload any open Google Classroom tab so the extension is picked up
