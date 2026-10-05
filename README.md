@@ -1,16 +1,16 @@
 # ClassFetch
 Bulk-download Google Drive attachments from Google Classroom posts in one click. No more opening and downloading each file one by one.
 
-<img width="1378" height="875" alt="Screenshot showing a file from Google Classroom listed in the extension" src="https://github.com/user-attachments/assets/bd69cc1b-3750-4f47-98be-7428e9fa8f83" />
-
+<!-- <img width="1378" height="875" alt="Screenshot showing a file from Google Classroom listed in the extension" src="https://github.com/user-attachments/assets/bd69cc1b-3750-4f47-98be-7428e9fa8f83" /> -->
+ 
 ## Why?
 The goal was simple, to let users select multiple files and download them in one click instead of having to click on each file and downloading it one by one.
 
 ## How to install?
 ### From browser extension store
 <p>
-  <!-- <a href="#"><img height="48" alt="Available in the Chrome Web Store" src="https://github.com/user-attachments/assets/d99135b0-a065-4915-a923-1baec5c49cfa" /></a>
-  <a href="#"><img height="48" alt="Get the Firefox add-on" src="https://github.com/user-attachments/assets/ac029f81-3807-45a3-bff2-b00c1c9f6ddf" /></a> -->
+  <a href="https://chromewebstore.google.com/detail/classfetch/dbjklefiffdfemplccpoenafhnpimjil"><img height="48" alt="Available in the Chrome Web Store" src="https://github.com/user-attachments/assets/2866e8bc-a6bc-46a6-9af7-949a4d7d71e8" /></a>
+  <!-- <a href="#"><img height="48" alt="Get the Firefox add-on" src="https://github.com/user-attachments/assets/ac029f81-3807-45a3-bff2-b00c1c9f6ddf" /></a> -->
   <a href="https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii"><img height="48" alt="Get it from Microsoft Edge" src="https://github.com/user-attachments/assets/f9308d4b-f62c-43c6-b9d4-8be8335d2255" /></a>
 </p>
 
@@ -19,27 +19,43 @@ The goal was simple, to let users select multiple files and download them in one
 2. Unzip it somewhere permanent. Browsers load the extension from that folder, so don't delete or move it afterwards. The folder you load must be the one that directly contains `manifest.json`
 3. Follow the steps for your browser:
 
-**Chrome**
+<details>
+<summary><b>Chrome</b></summary>
+
 1. Open `chrome://extensions`
 2. Turn on **Developer mode** (top-right toggle)
 3. Click **Load unpacked** and select the unzipped folder
 
-**Edge**
+</details>
+
+<details>
+<summary><b>Edge</b></summary>
+
 1. Open `edge://extensions`
 2. Turn on **Developer mode** (left sidebar toggle)
 3. Click **Load unpacked** and select the unzipped folder
 
-**Brave**
+</details>
+
+<details>
+<summary><b>Brave</b></summary>
+
 1. Open `brave://extensions`
 2. Turn on **Developer mode** (top-right toggle)
 3. Click **Load unpacked** and select the unzipped folder
 
-**Firefox**
+</details>
+
+<details>
+<summary><b>Firefox</b></summary>
+
 1. Open `about:debugging#/runtime/this-firefox`
 2. Click **Load Temporary Add-on**
 3. Select the `manifest.json` file inside the unzipped folder
 
 > Firefox removes temporary add-ons when the browser closes, so you'll need to load it again after each restart
+
+</details>
 
 **After installing or updating**
 - Reload any open Google Classroom tab so the extension is picked up
