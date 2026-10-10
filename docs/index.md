@@ -6,9 +6,9 @@ The goal was simple, to let users select multiple files and download them in one
 ## How to install?
 ### From browser extension store
 <p>
-  <a href="https://chromewebstore.google.com/detail/classfetch/dbjklefiffdfemplccpoenafhnpimjil"><img height="48" alt="Available in the Chrome Web Store" src="https://github.com/user-attachments/assets/2866e8bc-a6bc-46a6-9af7-949a4d7d71e8" /></a>
-  <a href="https://addons.mozilla.org/addon/classfetch/"><img height="48" alt="Get the Firefox add-on" src="https://github.com/user-attachments/assets/ac029f81-3807-45a3-bff2-b00c1c9f6ddf" /></a>
-  <a href="https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii"><img height="48" alt="Get it from Microsoft Edge" src="https://github.com/user-attachments/assets/f9308d4b-f62c-43c6-b9d4-8be8335d2255" /></a>
+  <a href="https://chromewebstore.google.com/detail/classfetch/dbjklefiffdfemplccpoenafhnpimjil"><img height="48" alt="Available in the Chrome Web Store" src="assets/chrome-webstore.png" /></a>
+  <a href="https://addons.mozilla.org/addon/classfetch/"><img height="48" alt="Get the Firefox add-on" src="assets/firefox-addons.png" /></a>
+  <a href="https://microsoftedge.microsoft.com/addons/detail/classfetch/ffmompjmgnnleondhldhdmekfcbjjnii"><img height="48" alt="Get it from Microsoft Edge" src="assets/edge-extensions.png" /></a>
 </p>
 
 ### From GitHub releases
@@ -47,7 +47,7 @@ The goal was simple, to let users select multiple files and download them in one
 2. Click the ClassFetch toolbar icon. Files that ClassFetch can download are listed with checkboxes
 3. Check the files you want and click **Download Selected**, or click **Download All**
 
-<img alt="Screenshot showing a file from Google Classroom listed in the extension" src="https://github.com/user-attachments/assets/bd69cc1b-3750-4f47-98be-7428e9fa8f83" />
+<img alt="Screenshot showing a file from Google Classroom listed in the extension" src="assets/screenshot.png" />
 
 ## FAQ
 **My files aren't showing up, even though they're in the stream.**
