@@ -3,10 +3,19 @@ function getFileId(driveLink) {
     return fileIdMatch ? fileIdMatch[1] : null;
 }
 
+function getAuthUser() {
+    const pathMatch = window.location.pathname.match(/\/u\/(\d+)/);
+    if (pathMatch) return pathMatch[1];
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('authuser') || null;
+}
+
 function getDirectDownloadLink(driveLink) {
     const fileId = getFileId(driveLink);
     if (fileId) {
-        return `https://drive.google.com/uc?export=download&id=${fileId}&confirm=t`;
+        const authUser = getAuthUser();
+        const authParam = authUser !== null ? `&authuser=${authUser}` : '';
+        return `https://drive.google.com/uc?export=download&id=${fileId}&confirm=t${authParam}`;
     }
     return null;
 }
